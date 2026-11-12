@@ -1,0 +1,73 @@
+type: custom:ha-3dprinter-card
+name: OctoPrint / Moonraker printer
+language: en
+status_entity: binary_sensor.printer_online
+power_entity: switch.printer_power
+power_button_position: left
+confirm_power_off: true
+offline_image: enclosed
+camera_refresh: 15
+sections:
+  - id: controls
+    type: controls
+    title: Print controls
+    enabled: true
+    wide: true
+    items:
+      - label: Pause
+        action: preset
+        command: pause
+        service: script.turn_on
+        entity: script.printer_pause
+      - label: Resume
+        action: preset
+        command: resume
+        service: script.turn_on
+        entity: script.printer_resume
+      - label: Cancel print
+        action: preset
+        command: cancel
+        service: script.turn_on
+        entity: script.printer_cancel
+        dangerous: true
+      - label: Emergency stop
+        action: preset
+        command: emergency
+        service: script.turn_on
+        entity: script.printer_emergency_stop
+        dangerous: true
+  - id: cameras
+    type: cameras
+    title: Cameras
+    enabled: true
+    items:
+      - label: Main camera
+        entity: camera.printer
+  - id: temperatures
+    type: temperatures
+    title: Temperatures
+    enabled: true
+    items:
+      - label: Nozzle
+        entity: sensor.printer_nozzle_temperature
+      - label: Bed
+        entity: sensor.printer_bed_temperature
+      - label: Chamber
+        entity: sensor.printer_chamber_temperature
+      - label: CPU
+        entity: sensor.printer_cpu_temperature
+  - id: energy
+    type: energy
+    title: Energy
+    enabled: false
+    energy_entity: sensor.printer_energy_kwh
+    price_per_kwh: 0.32
+    currency: EUR
+    items:
+      - label: Current power
+        entity: sensor.printer_power
+  - id: todo
+    type: todo
+    title: Print queue
+    enabled: false
+    entity: todo.print_queue

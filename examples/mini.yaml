@@ -1,0 +1,17 @@
+type: custom:ha-3dprinter-card-mini
+name: Ender 3 V3
+language: pl
+status_entity: binary_sensor.ender_online
+power_entity: switch.ender_power
+power_button_position: none
+offline_image: ender3v3
+camera_entity: camera.ender_camera
+model_entity: sensor.ender_current_file
+layer_entity: sensor.ender_current_layer
+total_layers_entity: sensor.ender_total_layers
+progress_entity: sensor.ender_progress
+show_camera: true
+show_model: true
+show_layer: true
+show_progress: true
+camera_refresh: 20
